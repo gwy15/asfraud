@@ -9,6 +9,9 @@ on:
     tags:
       - "*"
 
+env:
+  DOCKER_IMAGE: ${{ env.GITHUB_REPOSITORY }}
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -28,7 +31,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: docker.io/${{ env.GITHUB_REPOSITORY }}
+          images: docker.io/${{ env.DOCKER_IMAGE }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
