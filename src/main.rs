@@ -1,4 +1,6 @@
 use std::borrow::Cow;
+#[cfg(unix)]
+use std::path::PathBuf;
 
 use actix_web::{web, App, HttpRequest, HttpResponse, HttpResponseBuilder, HttpServer};
 use anyhow::{Context, Result};
@@ -10,7 +12,20 @@ use tracing::*;
 #[derive(Parser, Debug)]
 #[clap(author, version, about)]
 struct Args {
-    #[clap(long, default_value = "8080")]
+    #[cfg(unix)]
+    #[clap(long = "socket", help = "Path to the unix socket")]
+    socket: Option<PathBuf>,
+
+    #[cfg(unix)]
+    #[clap(
+        long,
+        default_value = "8080",
+        help = "Port to listen on, ignored if --unix-socket is set"
+    )]
+    port: u16,
+
+    #[cfg(not(unix))]
+    #[clap(long, default_value = "8080", help = "Port to listen on")]
     port: u16,
 }
 
@@ -94,9 +109,18 @@ async fn main() -> Result<()> {
 
     let args = Args::parse();
 
-    HttpServer::new(|| App::new().default_service(web::route().to(route)))
-        .bind(("0.0.0.0", args.port))?
-        .run()
-        .await?;
+    let server = HttpServer::new(|| App::new().default_service(web::route().to(route)));
+
+    #[cfg(unix)]
+    if let Some(socket) = args.socket {
+        server
+            .bind_uds(socket)
+            .context("Bind unix socket failed")?
+            .run()
+            .await?;
+        return Ok(());
+    }
+
+    server.bind(("0.0.0.0", args.port))?.run().await?;
     Ok(())
 }
