@@ -133,7 +133,7 @@ impl Url {
 impl Url {
     pub fn html(&self) -> String {
         format!(
-            r#"""<!DOCTYPE html>
+            r#"<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -146,7 +146,7 @@ impl Url {
 <body>
 <div>{}</div>
 </body>
-</html>"""#,
+</html>"#,
             self.icon, self.title, self.body
         )
     }
