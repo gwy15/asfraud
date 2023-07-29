@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "\n                UPDATE urls\n                SET\n                    `path` = ?, `title` = ?, `body` = ?, `icon` = ?, `redirect` = ?,\n                    `updated_at` = ?\n                WHERE id = ?\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 7
+    },
+    "nullable": []
+  },
+  "hash": "b4862ca0d7548df52e9e8604eda00525368af258b061baf74523a56461049598"
+}

@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "\n                UPDATE urls\n                SET\n                    `hits` = `hits` + 1\n                WHERE id = ?\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": []
+  },
+  "hash": "c306a024b5ddce80d9d1b7c5e21790d0d42e7ef8ddbb7d4de32c1b4d550fd82d"
+}

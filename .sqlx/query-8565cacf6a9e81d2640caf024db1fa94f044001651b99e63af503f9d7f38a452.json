@@ -1,0 +1,68 @@
+{
+  "db_name": "SQLite",
+  "query": "\n                SELECT * FROM urls\n                WHERE `path` = ?\n                LIMIT 1\n            ",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Int64"
+      },
+      {
+        "name": "path",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "title",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "body",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "icon",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "redirect",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "hits",
+        "ordinal": 6,
+        "type_info": "Int64"
+      },
+      {
+        "name": "created_at",
+        "ordinal": 7,
+        "type_info": "Datetime"
+      },
+      {
+        "name": "updated_at",
+        "ordinal": 8,
+        "type_info": "Datetime"
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "8565cacf6a9e81d2640caf024db1fa94f044001651b99e63af503f9d7f38a452"
+}

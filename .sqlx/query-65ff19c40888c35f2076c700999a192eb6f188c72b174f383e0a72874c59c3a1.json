@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "\n                INSERT INTO urls (\n                    `path`, `title`, `body`, `icon`, `redirect`,\n                    `created_at`, `updated_at`\n                )\n                VALUES (?, ?, ?, ?, ?, ?, ?)\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 7
+    },
+    "nullable": []
+  },
+  "hash": "65ff19c40888c35f2076c700999a192eb6f188c72b174f383e0a72874c59c3a1"
+}
